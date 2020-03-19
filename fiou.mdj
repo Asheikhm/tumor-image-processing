@@ -869,7 +869,7 @@
 											"top": 148,
 											"width": 223,
 											"height": 13,
-											"text": "+application: QApplication",
+											"text": "-application: QApplication",
 											"horizontalAlignment": 0
 										}
 									],
@@ -9994,6 +9994,7 @@
 								"$ref": "AAAAAAFwLNvWNmJkC5M="
 							},
 							"name": "application",
+							"visibility": "private",
 							"type": "QApplication"
 						}
 					],
