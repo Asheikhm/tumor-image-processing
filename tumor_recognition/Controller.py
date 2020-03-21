@@ -1,11 +1,12 @@
-from View import mainWindow as mW
-
+from View import mainWindow as Mw
+from Model import tumorRecognitionBrain as TrB
 class tumorRecognitionApplication:
     def __init__(self):
-        self.__main_window = mW()
+        self.__main_window = Mw()
+        self.__brain = TrB()
 
     def create_tumors(self):
-        pass
+        self.__brain.create_tumors()
 
 
 

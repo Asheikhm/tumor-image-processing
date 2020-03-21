@@ -69,7 +69,6 @@ class applicationCanvas(QtW.QWidget):
         self.layout = QtW.QGridLayout()
         self.layout.addWidget(self.__label,1,1)
         self.setLayout(self.layout)
-        self.setStyleSheet('background-color:green')
 
     def update_image(self,file_path):
         self.__image.load(file_path)
