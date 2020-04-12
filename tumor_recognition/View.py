@@ -1,6 +1,8 @@
 from PyQt5 import QtWidgets as QtW
 from PyQt5 import QtCore as QtC
 from PyQt5 import QtGui as QtG
+import time
+
 
 class PrepareButtonView(QtW.QPushButton):
     def __init__(self, name, controller):
@@ -38,6 +40,18 @@ class ApplicationMenu(QtW.QWidget):
         self.__path = QtW.QLineEdit(' ')
         self.__path.setReadOnly(True)
 
+        self.__label_SaltNPepper = QtW.QLabel('Salt and Pepper noise')
+        self.__checkSaltNPepper = QtW.QCheckBox()
+        self.__label_Gaussian = QtW.QLabel('Gaussian noise')
+        self.__checkGaussian = QtW.QCheckBox()
+
+        self.bg = QtW.QButtonGroup()
+        self.bg.addButton(self.__checkSaltNPepper,1)
+        self.bg.addButton(self.__checkGaussian,2)
+
+        #Apply Gaussian noise by default
+        self.__checkGaussian.setChecked(True)
+
     def set_layouts(self):
         self.layoutHv1 = QtW.QHBoxLayout()
         self.layoutHv1.addWidget(self.__label)
@@ -47,14 +61,22 @@ class ApplicationMenu(QtW.QWidget):
         self.layoutHv2.addWidget(self.__prepare)
         self.layoutHv2.addWidget(self.__learn)
 
-        self.layoutHv3 = QtW.QHBoxLayout()
-        self.layoutHv3.addWidget(self.__select)
-        self.layoutHv3.addWidget(self.__path)
+        self.layoutHv3 = QtW.QGridLayout()
+        self.layoutHv3.addWidget(self.__label_SaltNPepper, 1, 1)
+        self.layoutHv3.addWidget(self.__checkSaltNPepper, 1, 2)
+        self.layoutHv3.addWidget(self.__label_Gaussian, 2, 1)
+        self.layoutHv3.addWidget(self.__checkGaussian, 2, 2)
+
+        self.layoutHv4 = QtW.QHBoxLayout()
+        self.layoutHv4.addWidget(self.__select)
+        self.layoutHv4.addWidget(self.__path)
 
         self.main_layout = QtW.QVBoxLayout()
         self.main_layout.addLayout(self.layoutHv1)
         self.main_layout.addLayout(self.layoutHv2)
         self.main_layout.addLayout(self.layoutHv3)
+        self.main_layout.addLayout(self.layoutHv4)
+
         self.setLayout(self.main_layout)
     
     def connect(self):
@@ -108,7 +130,6 @@ class ApplicationCanvas(QtW.QWidget):
         self.__label.setPixmap(self.__image)
 
 class MainWindow(QtW.QWidget):
-
     def __init__(self, width = 1000, height = 800):
         self.__application = QtW.QApplication([])
         super().__init__()
@@ -137,6 +158,6 @@ class MainWindow(QtW.QWidget):
     
     def menu(self):
         return self.__menu
-
-if __name__ == '__main__':
-    ex = MainWindow()
+        
+    def selected_noise_Strategy(self):
+        return self.__menu.bg.checkedId()

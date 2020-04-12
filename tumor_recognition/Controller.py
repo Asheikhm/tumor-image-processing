@@ -7,7 +7,7 @@ class TumorRecognitionApplication:
         self.__brain = model
 
     def create_tumors(self):
-        self.__brain.create_tumors()
+        self.__brain.create_tumors(self.__main_window.selected_noise_Strategy())
     
     def learn(self):
         self.__brain.extract_all_images()
