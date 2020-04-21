@@ -9,8 +9,8 @@ class PrepareButtonView(QtW.QPushButton):
         super(QtW.QPushButton, self).__init__(name)
         self.__controller = controller
 
-    def prepare_images(self):
-        self.__controller.create_tumors()
+    def prepare_images(self, nb_images):
+        self.__controller.create_tumors(nb_images)
 
 class SelectButtonView(QtW.QPushButton):
     def __init__(self, name, controller):
@@ -81,12 +81,12 @@ class ApplicationMenu(QtW.QWidget):
     
     def connect(self):
         self.__select.clicked.connect(self.open_file_dialog)
-        self.__prepare.clicked.connect(self.__prepare.prepare_images)
+        self.__prepare.clicked.connect(self.prepare)
         self.__learn.clicked.connect(self.__learn.learning)
 
-    def transfer_informations(self):
+    def prepare(self):
         if self.__nb_images.text() != '':
-            self.parent.send_nb_images(self.__nb_images.text())
+            self.__prepare.prepare_images(int(self.__nb_images.text()))
 
     def open_file_dialog(self):
         options = QtW.QFileDialog.Options()

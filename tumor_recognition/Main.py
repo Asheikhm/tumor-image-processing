@@ -65,19 +65,3 @@ if __name__ == '__main__':
         #pour chaque pixel, multiplie par row_kernel et additionne le tout
         #[0] = ([1,2,3,4,5] * [4,5,6,7,8])
         #pass
-
-
-
-
-    # apply noise
-        #image = Image.open('459.png').convert('L')
-        #image = numpy.asarray(image)
-       # mean = 10
-        #var = 10
-        #sigma = var ** 0.5
-        #gaussian = numpy.random.normal(mean, sigma, (image.shape[0], image.shape[1]))
-        #c_im = image + gaussian
-        #rescaled = (255.0 / c_im.max() * (c_im - c_im.min())).astype(numpy.uint8)
-
-
-
